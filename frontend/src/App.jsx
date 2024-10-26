@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import Login from './pages/login'
 import Groups from './pages/groups'
@@ -11,7 +11,7 @@ function App() {
     <Router>
         <Routes>
           <Route path="/login" element={<Login user={user} setUser={setUser}/>} />
-          <Route path="/" element={<Groups />}/>
+          <Route path="/" element={user ? <Groups /> : <Navigate to="/login" replace />}/>
         </Routes>
     </Router>
   )

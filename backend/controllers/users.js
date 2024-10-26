@@ -8,6 +8,7 @@ userRouter.get('/', async (request, response) => {
     response.json(users)
   } catch (error) {
     console.error('an error occured while trying to get users', error)
+    response.status(400).json('an error occurred while retrieving users')
   }
 })
 

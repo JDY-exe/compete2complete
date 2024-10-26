@@ -1,8 +1,24 @@
+import React from "react";
 import "./Groups.css";
 import AddGroupModal from "./AddGroupModal";
 import React, { useState } from "react";
+const Box = ({ name, assignments }) => {
+  return (
+    <div className="group">
+      <span className="group-name">{name}</span>
+      <div className="divider"></div>
+      <span className="assignments-count">{assignments} assignments</span>
+    </div>
+  );
+};
 
 const groups = [
+  { name: "CS 250 HW :C", assignments: 14 },
+  { name: "CS 250 HW :C", assignments: 14 },
+  { name: "CS 250 HW :C", assignments: 14 },
+  { name: "CS 250 HW :C", assignments: 14 },
+  { name: "CS 250 HW :C", assignments: 14 },
+  { name: "CS 250 HW :C", assignments: 14 },
   { name: "CS 250 HW :C", assignments: 14 },
   { name: "CS 250 HW :C", assignments: 14 },
   { name: "CS 250 HW :C", assignments: 14 },
