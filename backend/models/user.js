@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  passwordHash: String,
   groups: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Group'
@@ -31,6 +32,7 @@ userSchema.set('toJSON', {
     returnedObject.id = returnedObject._id.toString()
     delete returnedObject._id
     delete returnedObject.__v
+    delete returnedObject.passwordHash
   }
 })
 
