@@ -1,0 +1,66 @@
+.groups-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid blue;
+    margin-bottom: 20px; /* Add some space below the header */
+  }
+  
+  .header h1 {
+    margin: 0;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .username {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .avatar {
+    width: 30px;
+    height: 30px;
+    background-color: gray;
+    border-radius: 50%;
+  }
+  
+  .groups-list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 20px;
+  }
+  
+  .group {
+    border: 1px solid black;
+    width: 200px;
+    height: 100px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .group-name {
+    font-weight: bold;
+  }
+  
+  .assignments-count {
+    background-color: #4a7a8c;
+    color: white;
+    padding: 5px;
+    margin-top: 10px;
+  }
+  
+  .join-group {
+    justify-content: center;
+  }
+  
