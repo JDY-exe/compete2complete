@@ -1,25 +1,50 @@
 import './Login.css'
-function Login() {
+import loginService from '../services/loginService'
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+const Login = ({user, setUser}) => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const navigate = useNavigate()
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        try {
+            const user = await loginService.login(username, password)
+            if (!user) {
+                console.error('incorrect credentials', error)
+            } else {
+                setUser(user)
+                setUsername('')
+                setPassword('')
+                navigate('/')
+            }
+        } catch(error) {
+            console.error('an error occured while trying to login', error)
+        }
+    }
+
     return(
-        <div class="login-container">
-        <div class="header">
-            <h1 class="title">Login</h1>
-            <svg class="arrow-icon" viewBox="0 0 24 24">
-                <path d="M7 17L17 7M17 7H7M17 7V17" stroke="black" stroke-width="2" fill="none"/>
-            </svg>
+        <div className="login-container">
+            <div className="header">
+                <h1 className="title">Login</h1>
+                <svg className="arrow-icon" viewBox="0 0 24 24">
+                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="black" strokeWidth="2" fill="none"/>
+                </svg>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <input type="text" id="username" name="username" value={username} required onChange={event => setUsername(event.target.value)}></input>
+                </div>
+                <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <input type="password" id="password" name="password" value={password} required onChange={event => setPassword(event.target.value)}></input>
+                </div>
+                <button type="submit" className="submit-btn">Go!</button>
+            </form>
         </div>
-        <form>
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required></input>
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required></input>
-            </div>
-            <button type="submit" class="submit-btn">Go!</button>
-        </form>
-    </div>
     )
 
 }
