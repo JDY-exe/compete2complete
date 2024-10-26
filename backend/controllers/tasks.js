@@ -29,6 +29,7 @@ taskRouter.put('/:id', async (request, response) => {
     response.json(newTask)
   } catch(error) {
     console.error('could not update task', error)
+    response.status(400).json({error: 'an error occurred while updating task'})
   }
 })
 
