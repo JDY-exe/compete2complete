@@ -74,6 +74,7 @@ body {
     grid-row: 2/10;
     grid-column: 1/6;
     margin-left: 2vw;   
+    background-color: var(--WHITE);
 }
 
 
@@ -132,10 +133,87 @@ body {
 
 
   .lb-taskboard {
-    background-color: white;
     grid-row: 2/11;
     grid-column: 6/11;
     display:flex;
     flex-direction:column;
-    background: linear-gradient(145deg, #f0e6e6, #e6f0e6);
+    background-color: var(--WHITE);
+  }
+
+
+  .lb-task-card {
+    background-color: rgb(229, 231, 235);
+    padding: 2rem;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
+  }
+  
+  .lb-task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  
+  .lb-task-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .lb-task-delete-button {
+    font-size: 1.5rem;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+  }
+  
+  .lb-task-description {
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+    color: rgb(55, 65, 81);
+  }
+  
+  .lb-task-footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: rgb(209, 213, 219);
+    padding: 1rem;
+    border-radius: 0.25rem;
+  }
+  
+  .lb-points-input {
+    background: transparent;
+    border: none;
+    font-size: 2rem;
+    font-weight: bold;
+    width: 4rem;
+    padding: 0.25rem;
+  }
+  
+  .lb-points-input:focus {
+    outline: none;
+  }
+  
+  .lb-mark-complete {
+    margin-left: auto;
+    background-color: rgb(147, 197, 253);
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: black;
+  }
+  
+  .lb-mark-complete:hover {
+    background-color: rgb(96, 165, 250);
   }
