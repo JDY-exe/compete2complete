@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./AddGroupModal.css";
 
 const AddGroupModal = ({ isOpen, onClose }) => {
   const [groupName, setGroupName] = useState("");
@@ -8,7 +9,7 @@ const AddGroupModal = ({ isOpen, onClose }) => {
     const newGroup = { name: groupName, assignments: 0 };
     setGroupName(newGroup);
     // Update your groups state here
-    onClose()
+    onClose();
   };
 
   const handleSubmit = () => {
@@ -22,30 +23,27 @@ const AddGroupModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="modal-overlay">
-      <div className="modal-content">
+    <div className="modal-container">
+      <div className="modal">
+        <h1>Add a new group:</h1>
         <button className="modal-close" onClick={onClose}>
           ×
         </button>
 
-        <div className="modal-body">
-          <input
-            type="text"
-            placeholder="Group Name"
-            value={groupName}
-            onChange={(e) => setGroupName(e.target.value)}
-            className="group-input"
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Group Name"
+          value={groupName}
+          onChange={(e) => setGroupName(e.target.value)}
+          className="group-input"
+        />
 
-        <div className="modal-footer">
-          <button className="modal-button cancel" onClick={onClose}>
-            Cancel
-          </button>
-          <button className="modal-button confirm" onClick={handleSubmit}>
-            Confirm
-          </button>
-        </div>
+        <button className="modal-button cancel" onClick={onClose}>
+          Cancel
+        </button>
+        <button className="modal-button confirm" onClick={handleSubmit}>
+          Confirm
+        </button>
       </div>
     </div>
   );
