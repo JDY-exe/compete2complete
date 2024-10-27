@@ -25,7 +25,7 @@ const Box = ({ name, assignments }) => {
 //   { name: "CS 250 HW :C", assignments: 14 },
 //   { name: "CS 250 HW :C", assignments: 14 },
 // ];
-function Groups() {
+function Groups({user}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [groups, setGroups] = useState([])
 
@@ -45,7 +45,7 @@ function Groups() {
       <div className="header">
         <h1 className="title">My Groups</h1>
         <div className="user-info">
-          <span className="username">Fallen</span>
+          <span className="username">{user.username}</span>
           <div className="avatar"></div>
         </div>
       </div>
