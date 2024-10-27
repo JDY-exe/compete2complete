@@ -53,7 +53,7 @@ const Login = ({user, setUser}) => {
                     <div>
                         Account has been created successfully
                     </div>
-                    <div class='create-acct-link return-to-login' onClick={() => {switchContext(); setAccountCreated(false)}}>
+                    <div className='create-acct-link return-to-login' onClick={() => {switchContext(); setAccountCreated(false)}}>
                         Back to Login Page
                     </div>
                 </div>
@@ -83,7 +83,7 @@ const Login = ({user, setUser}) => {
                             onChange={event => {setPassword(event.target.value); setError(null)}}></input>
                         </div>
                         <ErrorMessage error={error}/>
-                        <div class='create-acct-link' onClick={switchContext}>
+                        <div className='create-acct-link' onClick={switchContext}>
                             Back to Login Page
                         </div>
                         <button type="submit" className="submit-btn">Go!</button>
@@ -114,7 +114,7 @@ const Login = ({user, setUser}) => {
                         onChange={event => {setPassword(event.target.value); setError(null)}}></input>
                     </div>
                     <ErrorMessage error={error}/>
-                    <div class='create-acct-link' onClick={switchContext}>
+                    <div className='create-acct-link' onClick={switchContext}>
                         Don't have an account? Create one here
                     </div>
                     <button type="submit" className="submit-btn">Go!</button>
