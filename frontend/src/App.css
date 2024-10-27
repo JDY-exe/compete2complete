@@ -3,11 +3,3 @@
   margin: 0 0;
   text-align: center;
 }
-
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(145deg, #f0e6e6, #e6f0e6);
-}

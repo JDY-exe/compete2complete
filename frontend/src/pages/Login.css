@@ -10,9 +10,18 @@
     font-family: "Roboto", sans-serif;
 }
 
-.bg {
-    background-color: var(--DARK-BLUE);
+.login-page {
+    display:flex;
+    margin:0;
+    padding:0;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(145deg, #f0e6e6, #e6f0e6);
 }
+
+
 
 
 .login-container {
