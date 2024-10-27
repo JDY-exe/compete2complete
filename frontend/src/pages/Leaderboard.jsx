@@ -25,10 +25,11 @@ function Leaderboard() {
                     <div className="player-card-content">
                         <div className="player-card-header">
                             <span className="player-card-name">Marin Kitagawa</span>
-                            <span className="player-card-points">102 pts</span>
+                            <span className="player-card-points">90 pts</span>
                         </div>
                         <div className="player-progress-bar">
-                            <div className="player-progress-fill" style={{ width: '50%' }}></div>
+                            <div className="player-progress-fill" style={{ width: '50%' }}></div> 
+                            {/* progress bar should be proportional to total points available*/}
                         </div>
                     </div>
                 </div>
@@ -42,6 +43,7 @@ function Leaderboard() {
                         </div>
                         <div className="player-progress-bar">
                             <div className="player-progress-fill" style={{ width: '5%' }}></div>
+                            {/* progress bar should be proportional to total points available*/}
                         </div>
                     </div>
                 </div>
