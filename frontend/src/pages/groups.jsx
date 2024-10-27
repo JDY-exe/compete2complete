@@ -30,7 +30,7 @@ function Groups({user}) {
 
   return (
     <div className="groups-container">
-      <div className="header">
+      <div className="groups-header">
         <h1 className="title">My Groups</h1>
         <div className="user-info">
           <span className="username">{user.username}</span>
