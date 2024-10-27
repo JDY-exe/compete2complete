@@ -105,6 +105,18 @@ function Leaderboard() {
                                     required
                                 />
                             </div>
+                            <div className="new-task-form-group">
+                                <label htmlFor="taskPoints" className="form-label">
+                                    Point Value
+                                </label>
+                                <input
+                                    type="number"
+                                    id="taskPoints"
+                                    name="taskPoints"
+                                    className="form-input"
+                                    required
+                                />
+                            </div>
 
                             <div className="new-task-form-group">
                                 <label htmlFor="dueDate" className="form-label">

@@ -13,18 +13,6 @@ const Box = ({ name, assignments }) => {
   );
 };
 
-// const groups = [
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-//   { name: "CS 250 HW :C", assignments: 14 },
-// ];
 function Groups({user}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [groups, setGroups] = useState([])
