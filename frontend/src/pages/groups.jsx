@@ -1,50 +1,70 @@
-import React from 'react';
-import './Groups.css';
+import React, { useState, useEffect } from "react";
+import "./Groups.css";
+import AddGroupModal from "./AddGroupModal";
+import groupService from '../services/groupService'
 
 const Box = ({ name, assignments }) => {
-    return (
-      <div className="group">
-        <span className="group-name">{name}</span>
-        <div className="divider"></div>
-        <span className="assignments-count">{assignments} assignments</span>
-      </div>
-    );
+  return (
+    <div className="group">
+      <span className="group-name">{name}</span>
+      <div className="divider"></div>
+      <span className="assignments-count">{assignments} assignments</span>
+    </div>
+  );
 };
 
-const groups = [
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  { name: 'CS 250 HW :C', assignments: 14 },
-  
-];
+// const groups = [
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+// ];
+function Groups() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [groups, setGroups] = useState([])
 
-const Groups = () => {
-    return (
-      <div className="groups-container">
-        <header className="groups-header">
-          <h1 className="groups-title">My Groups</h1>
-          <div className="user-info">
-            <span className="groups-username">Fallen</span>
-            <div className="groups-avatar"></div>
-          </div>
-        </header>
-        <div className="groups-list">
-          {groups.map((group, index) => (
-            <Box key={index} name={group.name} assignments={group.assignments} />
-          ))}
-          <div className="group join-group">
-            <span className="group-name">+ Join Group</span>
-          </div>
+  useEffect(() => {
+    groupService.getGroups()
+      .then((response) => {
+        const groups = response
+        setGroups(groups)
+      })
+      .catch((error) => {
+        console.error('there was an error retrieving groups', error)
+      })
+  }, [])
+
+  return (
+    <div className="groups-container">
+      <div className="header">
+        <h1 className="title">My Groups</h1>
+        <div className="user-info">
+          <span className="username">Fallen</span>
+          <div className="avatar"></div>
         </div>
       </div>
-    );
-  };
-  
-  export default Groups;
+      <div className="groups-list">
+        {groups.map((group) => (
+          <Box key={group.id} name={group.name} assignments={0} />
+        ))}
+      </div>
+
+      <div className="group join-group" onClick={() => setIsModalOpen(true)}>
+        <span className="group-name">+ Join Group</span>
+      </div>
+
+      <AddGroupModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </div>
+  );
+}
+
+export default Groups;

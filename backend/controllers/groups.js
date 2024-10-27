@@ -11,6 +11,19 @@ groupRouter.get('/', async (request, response) => {
   }
 })
 
+groupRouter.get('/:id', async (request, response) => {
+  try {
+    const group = await Group.findById(request.params.id)
+    if (group === null) {
+      return response.status(404).json({error: "id doesn't exist"})
+    }
+    response.json(group)
+  } catch (error) {
+    console.error('error occurred while trying to get group from id', error)
+    response.status(400).json({error: 'error occurred while trying to get group from id'})
+  }
+})
+
 groupRouter.post('/', async (request, response) => {
   try {
     const group = new Group(request.body)
@@ -22,6 +35,30 @@ groupRouter.post('/', async (request, response) => {
   }
 })
 
-// add post request
+groupRouter.put('/:id', async (request, response) => {
+  try {
+    const group = request.body
+    const newGroup = await Group.findByIdAndUpdate(request.params.id, {...group}, {new: true})
+    if (newGroup === null) {
+      return response.status(404).json({error: 'id does not exist'})
+    }
+    response.json(newGroup)
+  } catch(error) {
+    console.error('an error occurred while changing group', error)
+    response.status(400).json('an error occurred while changing group')
+  }
+})
+
+groupRouter.delete('/:id', async(request, response) => {
+  try {
+    if ((await User.findById(request.params.id)) === null) {
+      return response.status(404).json({error: 'not found'})
+    }
+    await User.findByIdAndDelete(request.params.id)
+    response.status(204).end()
+  } catch(error) {
+    response.status(404).json({error: 'group doesnt exist'})
+  }
+})
 
 module.exports = groupRouter
