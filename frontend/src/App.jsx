@@ -5,15 +5,15 @@ import Groups from './pages/groups'
 import Leaderboard from './pages/Leaderboard'
 import './App.css'
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null)
 
   return (
     <Router>
         <Routes>
           <Route path="/login" element={<Login user={user} setUser={setUser}/>} />
-          <Route path="/" element={user ? <Groups user={user}/> : <Navigate to="/login" replace />}/>
-          <Route path="/leaderboard" element={user ? <Leaderboard user={user}/> : <Navigate to="/login" replace />} />
+          <Route path="/" element={user ? <Groups user={user} setUser={setUser}/> : <Navigate to="/login" replace />}/>
+          <Route path="/groups/:groupid" element={user ? <Leaderboard user={user} setUser={setUser}/> : <Navigate to="/login" replace />} />
         </Routes>
     </Router>
   )

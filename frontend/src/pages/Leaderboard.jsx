@@ -1,22 +1,76 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import './Leaderboard.css';
+import groupService from '../services/groupService';
+import taskService from '../services/taskService'
 
-function Leaderboard() {
-    // State to control the visibility of the new task container
-    const [isTaskContainerVisible, setTaskContainerVisible] = useState(false);
+const Leaderboard = ({user, setUser}) => {
+  // State to control the visibility of the new task container
+  const [isTaskContainerVisible, setTaskContainerVisible] = useState(false);
+  const [group, setGroup] = useState(null)
+  const [taskName, setTaskName] = useState('')
+  const [taskDesc, setTaskDesc] = useState('')
+  const [taskPoints, setTaskPoints] = useState('')
 
-    // Function to toggle the visibility
-    const toggleTaskContainer = () => {
-        setTaskContainerVisible((prevState) => !prevState);
-    };
+  const { groupid } = useParams()
+  // const [members, setMembers] = useState([])
+  // const [tasks, setTasks] = useState([])
+
+  // Function to toggle the visibility
+  const toggleTaskContainer = () => {
+      setTaskContainerVisible((prevState) => !prevState);
+  };
+
+  useEffect(() => {
+    groupService.getGroupById(groupid)
+      .then(foundGroup => {
+        setGroup(foundGroup)
+      }) 
+      .catch (error => {
+        console.error('group doesnt exist')
+      })
+  }, [])
+
+  if (group === null) {
+    return (
+      <div>
+        There was a problem loading data from the server
+      </div>
+    )
+  }
+
+  const handleAddTask = async (event) => {
+    event.preventDefault()
+    try {
+      const newTask = {
+        name: taskName,
+        description: taskDesc,
+        points: taskPoints,
+        group: group.id
+      }
+      const updatedGroup = await taskService.createTask(newTask, group)
+      setGroup(updatedGroup)
+      setTaskName('')
+      setTaskDesc('')
+      setTaskPoints('')
+      toggleTaskContainer()
+    } catch(error) {
+      console.error('an error occured while trying to create a new task', error)
+    }
+  } 
+
+  const handleTaskCompletion = async (id) => {
+    //todo
+  }
+
 
   return (
     <div className="lb-container">
       <div className="lb-header">
-        <div className="lb-group-name">Group Name</div>
+        <div className="lb-group-name">{group.name}</div>
         <div className="user-name-container">
-          username
-          <button className="lb-logout-button">
+          {user.username}
+          <button className="lb-logout-button" onClick={() => setUser(null)}>
             logout
           </button>
         </div>
@@ -24,17 +78,16 @@ function Leaderboard() {
 
       <div className="lb-main">
         <div className="lb-subheader">Leaderboard</div>
-
-        <UserCard name={'Marin'} points={60} />
-        <UserCard name={'Gojo'} points={40} />
-
+        {group.members.map(member => {
+          return <UserCard key={member.id} name={member.username} points={0} />
+        })}
       </div>
 
       <div className="lb-taskboard">
         <div className="lb-subheader">Taskboard</div>
-        <TaskCard title={'DSA HW 5'} description={'Probably the worst wording on a homework ever.'} />
-        <TaskCard title={'DSA HW 5'} description={'Probably the worst wording on a homework ever.'} />
-        <TaskCard title={'DSA HW 5'} description={'Probably the worst wording on a homework ever.'} />
+        {group.tasks.map(task => {
+          return <TaskCard key={task.id} title={task.name} description={task.description} points={task.points}/>
+        })}
       </div>
 
       {/* Button to toggle the new task container */}
@@ -57,7 +110,7 @@ function Leaderboard() {
               </button>
             </div>
 
-            <form>
+            <form onSubmit={handleAddTask}>
               <div className="new-task-form-group">
                 <label htmlFor="taskName" className="form-label">
                   Task name
@@ -67,11 +120,28 @@ function Leaderboard() {
                   id="taskName"
                   name="taskName"
                   className="form-input"
+                  value={taskName}
+                  onChange={e => setTaskName(e.target.value)}
                   required
                 />
               </div>
 
               <div className="new-task-form-group">
+                <label htmlFor="taskPoints" className="form-label">
+                  Points
+                </label>
+                <input
+                  type="number"
+                  id="taskName"
+                  name="taskName"
+                  className="form-input"
+                  value={taskPoints}
+                  onChange={e => setTaskPoints(e.target.value)}
+                  required
+                />
+              </div>
+
+              {/* <div className="new-task-form-group">
                 <label htmlFor="dueDate" className="form-label">
                   Due date
                 </label>
@@ -82,7 +152,7 @@ function Leaderboard() {
                   className="form-input"
                   required
                 />
-              </div>
+              </div> */}
 
               <div className="new-task-form-group">
                 <label htmlFor="description" className="form-label">
@@ -92,6 +162,8 @@ function Leaderboard() {
                   id="description"
                   name="description"
                   className="form-input description-input"
+                  value={taskDesc}
+                  onChange={e => setTaskDesc(e.target.value)}
                   required
                 />
               </div>
@@ -107,11 +179,11 @@ function Leaderboard() {
   );
 }
 
-const TaskCard = ({title, description}) => {
+const TaskCard = ({title, description, points, key}) => {
   return (
     <div className="lb-task-card">
       <div className="lb-task-header">
-        <h1 className="lb-task-title">{title}</h1>
+        <h1 className="lb-task-title">{title} ({points} points)</h1>
         <button className="lb-task-delete-button">X</button>
       </div>
 
@@ -122,7 +194,7 @@ const TaskCard = ({title, description}) => {
       <div className="lb-task-footer">
         <input type="text" className="lb-points-input" placeholder="60" />
         <div style={{ fontSize: "1.25rem" }}>minutes taken</div>
-        <button className="lb-mark-complete">Mark complete</button>
+        <button className="lb-mark-complete" onClick={() => handleTaskCompletion(key)}>Mark complete</button>
       </div>
     </div>
   )

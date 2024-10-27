@@ -54,8 +54,25 @@
   font-size: 14px;
   color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
 }
 
 .modal-button:hover {
   opacity: 0.9;
+}
+
+.join-existing {
+  display: flex;
+  justify-content: center;
+}
+
+.join-existing-link {
+  padding-top: 1rem;
+  text-decoration: underline;
+  color: rgb(15, 15, 204, 0.8);
+  cursor: pointer;
+}
+
+.join-existing-link:hover {
+  color: rgba(15, 15, 204, 0.5)
 }

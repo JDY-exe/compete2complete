@@ -73,6 +73,11 @@
   border-radius: 0.2rem;
   border-style: solid;
   border-color: black;
+  cursor: pointer;
+}
+
+.lb-logout-button:hover {
+  background-color: rgba(0, 0, 0, 0.15);
 }
 
 .lb-main {

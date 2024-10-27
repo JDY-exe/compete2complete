@@ -43,6 +43,20 @@ userRouter.post('/', async (request, response) => {
   response.status(201).json(returnedUser)
 })
 
+userRouter.put('/:id', async (request, response) => {
+  try {
+    const user = request.body
+    const updatedUser = await User.findByIdAndUpdate(request.params.id, {...user}, {new: true})
+    if (updatedUser === null) {
+      return response.status(404).json({error: 'id does not exist'})
+    }
+    response.json(updatedUser)
+  } catch(error) {
+    console.error('an error occurred while changing user', error)
+    response.status(400).json('an error occurred while changing user')
+  }
+})
+
 userRouter.delete('/:id', async (request, response) => {
   try {
     if ((await User.findById(request.params.id)) === null) {

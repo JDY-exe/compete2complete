@@ -51,10 +51,10 @@ taskRouter.put('/:id', async (request, response) => {
 
 taskRouter.delete('/:id', async(request, response) => {
   try {
-    if ((await User.findById(request.params.id)) === null) {
+    if ((await Task.findById(request.params.id)) === null) {
       return response.status(404).json({error: 'not found'})
     }
-    await User.findByIdAndDelete(request.params.id)
+    await Task.findByIdAndDelete(request.params.id)
     response.status(204).end()
   } catch(error) {
     response.status(404).json({error: 'task doesnt exist'})

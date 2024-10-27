@@ -13,7 +13,7 @@ groupRouter.get('/', async (request, response) => {
 
 groupRouter.get('/:id', async (request, response) => {
   try {
-    const group = await Group.findById(request.params.id)
+    const group = await Group.findById(request.params.id).populate('members').populate('tasks')
     if (group === null) {
       return response.status(404).json({error: "id doesn't exist"})
     }
@@ -51,10 +51,10 @@ groupRouter.put('/:id', async (request, response) => {
 
 groupRouter.delete('/:id', async(request, response) => {
   try {
-    if ((await User.findById(request.params.id)) === null) {
+    if ((await Group.findById(request.params.id)) === null) {
       return response.status(404).json({error: 'not found'})
     }
-    await User.findByIdAndDelete(request.params.id)
+    await Group.findByIdAndDelete(request.params.id)
     response.status(204).end()
   } catch(error) {
     response.status(404).json({error: 'group doesnt exist'})
