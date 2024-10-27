@@ -1,72 +1,91 @@
+:root {
+  --padding: 20px;
+  --font-family: Arial, sans-serif;
+  --header-margin-top: 100px;
+  --header-background-color: transparent;
+  --header-border-color: blue;
+  --header-border-width: 2px solid;
+  --username-font-size: 1.5rem;
+  --avatar-size: 30px;
+  --group-border-color: black;
+  --group-border-radius: 0.5rem;
+  --group-width: 200px;
+  --group-height: 100px;
+  --group-margin: 10px;
+  --assignments-bg-color: #4a7a8c;
+  --assignments-text-color: white;
+  --assignments-padding: 5px;
+}
+
 .groups-container {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-    margin-top: 100px; /* Ensure space below the fixed header */
-  }
-  
-  .groups-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed; /* Fix the header to the top */
-    top: 0; /* Position at the top */
-    left: 0; /* Align the header to the left */
-    right: 0; /* Ensure the header spans the full width */
-    background-color: transparent; /* Make background transparent */
-    padding: 20px;
-    z-index: 1; /* Ensure it stays on top */
-    border-bottom: 2px solid blue; /* Make the blue line full-width */
-  }
-  
-  .user-info {
-    display: flex;
-    align-items: center;
-  }
-  
-  .groups-username {
-    margin-right: 10px;
-    font-weight: bold;
-    font-size: 1.5rem; /* Increase font size */
-  }
-  
-  .groups-avatar {
-    width: 30px;
-    height: 30px;
-    background-color: gray;
-    border-radius: 50%;
-  }
-  
-  .groups-list {
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: 100px; /* Ensure groups list doesn't overlap the header */
-  }
-  
-  .group {
-    border: 1px solid black;
-    border-radius: 0.5rem;
-    width: 200px;
-    height: 100px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .group-name {
-    font-weight: bold;
-    margin-bottom: 10px; /* Ensure some space between name and assignments */
-  }
-  
-  .assignments-count {
-    background-color: #4a7a8c;
-    color: white;
-    padding: 5px;
-    border-radius: 0.5rem; /* Make the background slightly rounded */
-  }
-  
-  .join-group {
-    justify-content: center;
-  }
-  
+  padding: var(--padding);
+  font-family: var(--font-family);
+  margin-top: var(--header-margin-top); /* Ensure space below the fixed header */
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed; /* Fix the header to the top */
+  top: 0; /* Position at the top */
+  left: 0; /* Align the header to the left */
+  right: 0; /* Ensure the header spans the full width */
+  background-color: var(--header-background-color); /* Make background transparent */
+  padding: var(--padding);
+  z-index: 1; /* Ensure it stays on top */
+  border-bottom: var(--header-border-width) var(--header-border-color); /* Full-width blue line */
+}
+
+.title {
+  margin: 0;
+  padding-left: var(--padding); /* Move header text more to the left */
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+}
+
+.username {
+  margin-right: 10px;
+  font-weight: bold;
+  font-size: var(--username-font-size); /* Increase font size */
+}
+
+.avatar {
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  background-color: gray;
+  border-radius: 50%;
+}
+
+.groups-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: var(--header-margin-top); /* Prevent overlap with header */
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertically */
+  align-items: center; /* Center horizontally */
+}
+
+.class-group-name {
+  font-size: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.assignments-count {
+  background-color: var(--assignments-bg-color);
+  color: var(--assignments-text-color);
+  padding: var(--assignments-padding);
+  border-radius: var(--group-border-radius); /* Match border radius */
+}
+
+.join-group {
+  justify-content: center;
+}

@@ -6,7 +6,7 @@ import groupService from '../services/groupService'
 const Box = ({ name, assignments }) => {
   return (
     <div className="group">
-      <span className="group-name">{name}</span>
+      <span className="class-group-name">{name}</span>
       <div className="divider"></div>
       <span className="assignments-count">{assignments} assignments</span>
     </div>
@@ -44,7 +44,7 @@ function Groups({user}) {
       </div>
 
       <div className="group join-group" onClick={() => setIsModalOpen(true)}>
-        <span className="group-name">+ Join Group</span>
+        <span className="class-group-name">+ Join Group</span>
       </div>
 
       <AddGroupModal
