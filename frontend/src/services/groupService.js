@@ -7,4 +7,9 @@ const getGroups = async () => {
     return response.data
 }
 
+const addGroup = async (group) => {
+    const response = await axios.post(baseurl, {...group})
+    return response.data
+}
+
 export default {getGroups}

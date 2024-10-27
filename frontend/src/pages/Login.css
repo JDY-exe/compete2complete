@@ -32,6 +32,10 @@
     padding-top: 0.5rem;
 }
 
+.login-success {
+    margin: 2vw;
+}
+
 .header {
     width: auto;
     margin: 3vw;
@@ -86,7 +90,7 @@ input:focus {
 }
 
 .submit-btn {
-    margin-top: 8vh;
+    margin-top: 1.5rem;
     width: 100%;
     padding: 1rem;
     background-color: #8bb4e3;
@@ -106,6 +110,21 @@ input:focus {
 .login-error {
     color: red;
     font-size: 1rem;
+}
+
+.create-acct-link {
+    padding-top: 1rem;
+    text-decoration: underline;
+    cursor: pointer;
+    color:#067fff;
+}
+
+.create-acct-link:hover {
+    color: #0466d0;
+}
+
+.return-to-login {
+    padding-bottom: 2rem;
 }
 
 @media (max-width: 480px) {
