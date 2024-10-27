@@ -4,7 +4,7 @@
     margin-top: 100px; /* Ensure space below the fixed header */
   }
   
-  .header {
+  .groups-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,13 +28,13 @@
     align-items: center;
   }
   
-  .username {
+  .groups-username {
     margin-right: 10px;
     font-weight: bold;
     font-size: 1.5rem; /* Increase font size */
   }
   
-  .avatar {
+  .groups-avatar {
     width: 30px;
     height: 30px;
     background-color: gray;

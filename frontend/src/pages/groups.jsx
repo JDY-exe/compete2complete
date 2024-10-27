@@ -28,11 +28,11 @@ const groups = [
 const Groups = () => {
     return (
       <div className="groups-container">
-        <header className="header">
-          <h1 className="title">My Groups</h1>
+        <header className="groups-header">
+          <h1 className="groups-title">My Groups</h1>
           <div className="user-info">
-            <span className="username">Fallen</span>
-            <div className="avatar"></div>
+            <span className="groups-username">Fallen</span>
+            <div className="groups-avatar"></div>
           </div>
         </header>
         <div className="groups-list">
