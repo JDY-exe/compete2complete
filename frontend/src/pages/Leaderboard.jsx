@@ -12,6 +12,7 @@ const Leaderboard = ({user, setUser}) => {
   const [taskName, setTaskName] = useState('')
   const [taskDesc, setTaskDesc] = useState('')
   const [taskPoints, setTaskPoints] = useState('')
+  const [totalPoints, setTotalPoints] = useState(0)
 
   const { groupid } = useParams()
   let refreshGroup = [false]
@@ -27,6 +28,7 @@ const Leaderboard = ({user, setUser}) => {
     groupService.getGroupById(groupid)
       .then(foundGroup => {
         setGroup(foundGroup)
+        setTotalPoints(foundGroup.tasks.reduce((initVal, task) => initVal + task.points, 0))
       }) 
       .catch (error => {
         console.error('group doesnt exist')
@@ -56,6 +58,7 @@ const Leaderboard = ({user, setUser}) => {
       setTaskDesc('')
       setTaskPoints('')
       toggleTaskContainer()
+      setTotalPoints(totalPoints + Number(taskPoints))
     } catch(error) {
       console.error('an error occured while trying to create a new task', error)
     }
@@ -93,7 +96,15 @@ const Leaderboard = ({user, setUser}) => {
       <div className="lb-main">
         <div className="lb-subheader">Leaderboard</div>
         {group.members.map(member => {
-          return <UserCard key={member.id} name={member.username} points={member.tasksCompleted.reduce((sum, task) => sum + task.points, 0)} />
+          return <UserCard key={member.id} name={member.username} points={
+            member.tasksCompleted.reduce((sum, task) => {
+              if (group.tasks.find(gTask => gTask.id === task.id)) {
+                return sum + task.points
+              }
+              return sum + 0
+            }, 0)
+          } 
+          totalPoints={totalPoints} />
         })}
       </div>
 
@@ -214,7 +225,8 @@ const TaskCard = ({title, description, points, id, handleTaskCompletion}) => {
   )
 }
 
-const UserCard = ({name, points}) => {
+const UserCard = ({name, points, totalPoints}) => {
+  const percentage = points / totalPoints * 100
   return (
     <div className="player-card">
       <div className="player-image"></div>
@@ -226,7 +238,7 @@ const UserCard = ({name, points}) => {
         <div className="player-progress-bar">
           <div
             className="player-progress-fill"
-            style={{ width: "5%" }}
+            style={{ width: `${percentage}%` }}
           ></div>
         </div>
       </div>

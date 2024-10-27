@@ -32,7 +32,9 @@ const addGroup = async (group, userid) => {
 
 const joinGroup = async (groupid, userid) => {
     const group = (await axios.get(`${baseurl}/${groupid}`)).data
-    const newMembers = group.members.map(member => member.id).concat(userid)
+    group.members = group.members.map(member => member.id)
+    group.tasks = group.tasks.map(task => task.id)
+    const newMembers = group.members.concat(userid)
     const response = await axios.put(`${baseurl}/${groupid}`, {...group, members: newMembers})
     const user = (await axios.get(`http://localhost:3000/api/users/${userid}`)).data
     user.groups = user.groups.map(group => group.id)
