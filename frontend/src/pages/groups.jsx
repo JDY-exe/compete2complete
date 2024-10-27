@@ -41,10 +41,10 @@ function Groups({user}) {
         {groups.map((group) => (
           <Box key={group.id} name={group.name} assignments={0} />
         ))}
-      </div>
-
-      <div className="group join-group" onClick={() => setIsModalOpen(true)}>
-        <span className="class-group-name">+ Join Group</span>
+        <div className="group join-group" onClick={() => setIsModalOpen(true)}>
+          <span className="class-group-name">+ Join Group</span>
+        </div>
+        
       </div>
 
       <AddGroupModal

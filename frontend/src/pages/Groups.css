@@ -18,7 +18,10 @@
 }
 
 .groups-container {
-  padding: var(--padding);
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  /* padding: var(--padding); */
   font-family: var(--font-family);
   margin-top: var(--header-margin-top); /* Ensure space below the fixed header */
 }
@@ -31,7 +34,7 @@
   top: 0; /* Position at the top */
   left: 0; /* Align the header to the left */
   right: 0; /* Ensure the header spans the full width */
-  background-color: var(--header-background-color); /* Make background transparent */
+  background-color: white; /* Make background transparent */
   padding: var(--padding);
   z-index: 1; /* Ensure it stays on top */
   border-bottom: var(--header-border-width) var(--header-border-color); /* Full-width blue line */
@@ -63,10 +66,19 @@
 .groups-list {
   display: flex;
   flex-wrap: wrap;
-  margin-top: var(--header-margin-top); /* Prevent overlap with header */
+  overflow-y: auto;
+  /* height: 80vh; */
+  /* width: 97vw; */
+  justify-content: center;
+  /*margin-top: var(--header-margin-top); /* Prevent overlap with header */
 }
 
 .group {
+  border: 1px solid var(--group-border-color);
+  border-radius: var(--group-border-radius);
+  width: var(--group-width);
+  height: var(--group-height);
+  margin: var(--group-margin);
   display: flex;
   flex-direction: column;
   justify-content: center; /* Center vertically */
