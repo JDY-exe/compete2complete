@@ -24,6 +24,7 @@ const addGroup = async (group, userid) => {
     const user = (await axios.get(`http://localhost:3000/api/users/${userid}`)).data
     user.groups = user.groups.map(group => group.id)
     user.groups = user.groups.concat(newGroup.id)
+    user.tasksCompleted = user.tasksCompleted.map(task => task.id)
     const newUser = (await axios.put(`http://localhost:3000/api/users/${userid}`, user)).data
 
     return newGroup
@@ -36,6 +37,7 @@ const joinGroup = async (groupid, userid) => {
     const user = (await axios.get(`http://localhost:3000/api/users/${userid}`)).data
     user.groups = user.groups.map(group => group.id)
     user.groups = user.groups.concat(groupid)
+    user.tasksCompleted = user.tasksCompleted.map(task => task.id)
     const newUser = (await axios.put(`http://localhost:3000/api/users/${userid}`, user)).data
 
     return response.data //this is the newly updated group

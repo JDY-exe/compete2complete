@@ -14,6 +14,7 @@ groupRouter.get('/', async (request, response) => {
 groupRouter.get('/:id', async (request, response) => {
   try {
     const group = await Group.findById(request.params.id).populate('members').populate('tasks')
+      .populate({path: 'members', populate: {path: 'tasksCompleted'}})
     if (group === null) {
       return response.status(404).json({error: "id doesn't exist"})
     }

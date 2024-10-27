@@ -12,18 +12,8 @@ const userSchema = new mongoose.Schema({
     ref: 'Group'
   }],
   tasksCompleted: [{
-    task: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Task'
-    },
-    time: {
-      type: Number,
-      required: true
-    },
-    completed: {
-      type: Date,
-      default: Date.now
-    }
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Task'
   }]
 })
 

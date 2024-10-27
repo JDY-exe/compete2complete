@@ -14,7 +14,7 @@ userRouter.get('/', async (request, response) => {
 
 userRouter.get('/:id', async (request, response) => {
   try {
-    const user = await User.findById(request.params.id).populate('groups')
+    const user = await User.findById(request.params.id).populate('groups').populate('tasksCompleted')
     response.json(user)
   } catch (error) {
     console.error('an error occured while trying to get user', error)
@@ -46,7 +46,7 @@ userRouter.post('/', async (request, response) => {
 userRouter.put('/:id', async (request, response) => {
   try {
     const user = request.body
-    const updatedUser = await User.findByIdAndUpdate(request.params.id, {...user}, {new: true})
+    const updatedUser = await User.findByIdAndUpdate(request.params.id, {...user}, {new: true}).populate('tasksCompleted')
     if (updatedUser === null) {
       return response.status(404).json({error: 'id does not exist'})
     }

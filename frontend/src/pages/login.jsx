@@ -49,7 +49,7 @@ const Login = ({user, setUser}) => {
         return (
             <div className="login-page">
                 <div className="login-container">
-                    <h1 className="title login-success">Login Successful</h1>
+                    <h1 className="title login-success">Sign Up Successful</h1>
                     <div>
                         Account has been created successfully
                     </div>

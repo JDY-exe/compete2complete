@@ -7,4 +7,9 @@ const signup = async (username, password) => {
     return response.data
 }
 
-export default {signup}
+const getUserById = async (id) => {
+    const response = await axios.get(`${baseurl}/${id}`)
+    return response.data
+}
+
+export default {signup, getUserById}

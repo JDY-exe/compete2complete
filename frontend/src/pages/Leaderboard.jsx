@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import './Leaderboard.css';
 import groupService from '../services/groupService';
 import taskService from '../services/taskService'
+import userService from '../services/userService';
 
 const Leaderboard = ({user, setUser}) => {
   // State to control the visibility of the new task container
@@ -13,6 +14,7 @@ const Leaderboard = ({user, setUser}) => {
   const [taskPoints, setTaskPoints] = useState('')
 
   const { groupid } = useParams()
+  let refreshGroup = [false]
   // const [members, setMembers] = useState([])
   // const [tasks, setTasks] = useState([])
 
@@ -29,7 +31,7 @@ const Leaderboard = ({user, setUser}) => {
       .catch (error => {
         console.error('group doesnt exist')
       })
-  }, [])
+  }, refreshGroup)
 
   if (group === null) {
     return (
@@ -61,6 +63,18 @@ const Leaderboard = ({user, setUser}) => {
 
   const handleTaskCompletion = async (id) => {
     //todo
+    try {
+      const updatedUser = await taskService.completeTask(id, user)
+      if (updatedUser === null) {
+        console.error('this task has already been completed already exists')
+      }
+      else {
+        setUser(updatedUser)
+        refreshGroup[0] = !refreshGroup[0]
+      }
+    } catch(error) {
+      console.error('an error occurred while trying to update user state', error)
+    }
   }
 
 
@@ -79,14 +93,14 @@ const Leaderboard = ({user, setUser}) => {
       <div className="lb-main">
         <div className="lb-subheader">Leaderboard</div>
         {group.members.map(member => {
-          return <UserCard key={member.id} name={member.username} points={0} />
+          return <UserCard key={member.id} name={member.username} points={member.tasksCompleted.reduce((sum, task) => sum + task.points, 0)} />
         })}
       </div>
 
       <div className="lb-taskboard">
         <div className="lb-subheader">Taskboard</div>
         {group.tasks.map(task => {
-          return <TaskCard key={task.id} title={task.name} description={task.description} points={task.points}/>
+          return <TaskCard key={task.id} title={task.name} description={task.description} points={task.points} id={task.id} handleTaskCompletion={handleTaskCompletion}/>
         })}
       </div>
 
@@ -179,7 +193,7 @@ const Leaderboard = ({user, setUser}) => {
   );
 }
 
-const TaskCard = ({title, description, points, key}) => {
+const TaskCard = ({title, description, points, id, handleTaskCompletion}) => {
   return (
     <div className="lb-task-card">
       <div className="lb-task-header">
@@ -194,7 +208,7 @@ const TaskCard = ({title, description, points, key}) => {
       <div className="lb-task-footer">
         <input type="text" className="lb-points-input" placeholder="60" />
         <div style={{ fontSize: "1.25rem" }}>minutes taken</div>
-        <button className="lb-mark-complete" onClick={() => handleTaskCompletion(key)}>Mark complete</button>
+        <button className="lb-mark-complete" onClick={() => handleTaskCompletion(id)}>Mark complete</button>
       </div>
     </div>
   )
