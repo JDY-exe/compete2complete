@@ -18,9 +18,10 @@ function Groups({user}) {
   const [groups, setGroups] = useState([])
 
   useEffect(() => {
-    groupService.getGroups()
+    groupService.getUserGroups(user.id)
       .then((response) => {
         const groups = response
+        console.log(groups)
         setGroups(groups)
       })
       .catch((error) => {

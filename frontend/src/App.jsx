@@ -13,7 +13,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login user={user} setUser={setUser}/>} />
           <Route path="/" element={user ? <Groups user={user}/> : <Navigate to="/login" replace />}/>
-          <Route path="/leaderboard" element={<Leaderboard user={user}/>} />
+          <Route path="/leaderboard" element={user ? <Leaderboard user={user}/> : <Navigate to="/login" replace />} />
         </Routes>
     </Router>
   )

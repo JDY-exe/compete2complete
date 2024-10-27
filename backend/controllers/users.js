@@ -12,6 +12,16 @@ userRouter.get('/', async (request, response) => {
   }
 })
 
+userRouter.get('/:id', async (request, response) => {
+  try {
+    const user = await User.findById(request.params.id).populate('groups')
+    response.json(user)
+  } catch (error) {
+    console.error('an error occured while trying to get user', error)
+    response.status(400).json('an error occurred while retrieving user')
+  }
+})
+
 userRouter.post('/', async (request, response) => {
   const {username, password} = request.body
   const checkDup = await User.findOne({username})

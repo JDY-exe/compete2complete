@@ -7,9 +7,14 @@ const getGroups = async () => {
     return response.data
 }
 
+const getUserGroups = async (id) => {
+    const response = await axios.get(`http://localhost:3000/api/user/${id}`)
+    return response.data.groups
+}
+
 const addGroup = async (group) => {
     const response = await axios.post(baseurl, {...group})
     return response.data
 }
 
-export default {getGroups, addGroup}
+export default {getGroups, addGroup, getUserGroups}

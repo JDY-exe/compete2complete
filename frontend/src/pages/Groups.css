@@ -42,7 +42,6 @@
 
 .title {
   margin: 0;
-  padding-left: var(--padding); /* Move header text more to the left */
 }
 
 .user-info {

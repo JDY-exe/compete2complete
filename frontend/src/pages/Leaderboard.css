@@ -16,27 +16,8 @@
   font-family: "Calibri", sans-serif;
 }
 
-
-.lb-group-name {
-
-}
-
-.lb-user-name-container {
-}
-
-.lb-logout-button {
-
-}
-
-.main-card-container {
-
-  display: flex;
-  flex-direction: row;
-
-}
-
 .lb-container {
-  /* width: 100vw;
+  width: 100vw;
   height: 100vh;
   padding: 0px;
   margin: 0px;
@@ -44,9 +25,7 @@
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   background-color: var(--WHITE);
-  overflow-y: auto; */
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
   
 }
 
@@ -63,7 +42,7 @@
   align-items: center;
 }
 
-/*
+
 .lb-subheader {
   text-align: left;
   font-size: 1.75rem;
@@ -97,7 +76,6 @@
 }
 
 .lb-main {
-  padding-top: 3vh;
   padding-right: 2vw;
   grid-row: 2/10;
   grid-column: 1/6;
@@ -170,8 +148,8 @@
 
 .lb-task-card {
   background-color: rgb(229, 231, 235);
+  margin-bottom: 1rem;
   padding: 1rem;
-  margin: 1vh 2vw;
   position: relative;
 }
 
@@ -348,4 +326,4 @@
 
 .submit-button:hover {
   background-color: rgb(30, 64, 127);
-} */
+}
