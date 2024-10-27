@@ -12,4 +12,4 @@ const addGroup = async (group) => {
     return response.data
 }
 
-export default {getGroups}
+export default {getGroups, addGroup}

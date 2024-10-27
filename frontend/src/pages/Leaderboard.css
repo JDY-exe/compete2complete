@@ -13,11 +13,30 @@
   --WHITE: #f0f0f0;
   --DARK-GREY: #3a3838;
   --GREY: #4f4b4b;
-  font-family: "Roboto", sans-serif;
+  font-family: "Calibri", sans-serif;
+}
+
+
+.lb-group-name {
+
+}
+
+.lb-user-name-container {
+}
+
+.lb-logout-button {
+
+}
+
+.main-card-container {
+
+  display: flex;
+  flex-direction: row;
+
 }
 
 .lb-container {
-  width: 100vw;
+  /* width: 100vw;
   height: 100vh;
   padding: 0px;
   margin: 0px;
@@ -25,7 +44,10 @@
   grid-template-columns: repeat(10, 1fr);
   grid-template-rows: repeat(10, 1fr);
   background-color: var(--WHITE);
-  overflow-y: auto;
+  overflow-y: auto; */
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .lb-header {
@@ -38,27 +60,42 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 }
 
+/*
 .lb-subheader {
   text-align: left;
   font-size: 1.75rem;
   margin: 1vh 0;
 }
 
-.group-name {
-  margin-left: 3vw;
+.lb-group-name {
+  padding-left: 1.5rem;
   font-size: 2.5rem;
   font-weight: bold;
   color: #000;
 }
 
-.user-name {
-  margin-right: 3vw;
+.user-name-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 1.5rem;
   font-size: 2.5rem;
   font-weight: bold;
   color: #000;
 }
+
+.lb-logout-button {
+  margin-left: 0.7rem;
+  font-size: 1.4rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 0.2rem;
+  border-style: solid;
+  border-color: black;
+}
+
 .lb-main {
   padding-top: 3vh;
   padding-right: 2vw;
@@ -311,4 +348,4 @@
 
 .submit-button:hover {
   background-color: rgb(30, 64, 127);
-}
+} */
