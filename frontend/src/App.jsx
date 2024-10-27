@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate } from 'react-ro
 import { useState } from 'react'
 import Login from './pages/login'
 import Groups from './pages/groups'
-import Leaderboard from './pages/leaderboard'
+import Leaderboard from './pages/Leaderboard'
 import './App.css'
 
 function App() {
