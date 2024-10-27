@@ -25,27 +25,29 @@ const Login = ({user, setUser}) => {
     }
 
     return(
-        <div className="login-container">
-            <div className="header">
-                <h1 className="title">Login</h1>
-                <svg className="arrow-icon" viewBox="0 0 24 24">
-                    <path d="M7 17L17 7M17 7H7M17 7V17" stroke="black" strokeWidth="2" fill="none"/>
-                </svg>
+        <div className='login-page'>
+            <div className="login-container">
+                <div className="header">
+                    <h1 className="title">Login</h1>
+                    <svg className="arrow-icon" viewBox="0 0 24 24">
+                        <path d="M7 17L17 7M17 7H7M17 7V17" stroke="black" strokeWidth="2" fill="none"/>
+                    </svg>
+                </div>
+                <form onSubmit={handleSubmit}>
+                    <div className="form-group">
+                        <label htmlFor="username">Username</label>
+                        <input type="text" id="username" name="username" value={username} required 
+                        onChange={event => {setUsername(event.target.value); setError(null)}}></input>
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="password">Password</label>
+                        <input type="password" id="password" name="password" value={password} required 
+                        onChange={event => {setPassword(event.target.value); setError(null)}}></input>
+                    </div>
+                    <ErrorMessage error={error}/>
+                    <button type="submit" className="submit-btn">Go!</button>
+                </form>
             </div>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="username">Username</label>
-                    <input type="text" id="username" name="username" value={username} required 
-                    onChange={event => {setUsername(event.target.value); setError(null)}}></input>
-                </div>
-                <div className="form-group">
-                    <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" value={password} required 
-                    onChange={event => {setPassword(event.target.value); setError(null)}}></input>
-                </div>
-                <ErrorMessage error={error}/>
-                <button type="submit" className="submit-btn">Go!</button>
-            </form>
         </div>
     )
 

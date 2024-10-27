@@ -25,6 +25,7 @@
     display:grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
+    background-color: var(--WHITE);
 }
 
 
@@ -129,14 +130,14 @@
     display:flex;
     flex-direction:column;
     background-color: var(--WHITE);
+    overflow: auto;
   }
 
 
   .lb-task-card {
     background-color: rgb(229, 231, 235);
-    padding: 2rem;
-    width: 100%;
-    max-width: 100%;
+    padding: 1rem;
+    margin: 1vh 2vw;
     position: relative;
   }
   
@@ -166,6 +167,7 @@
   }
   
   .lb-task-description {
+    text-align: left;
     font-size: 1.25rem;
     margin-bottom: 2rem;
     color: rgb(55, 65, 81);
@@ -176,16 +178,18 @@
     align-items: center;
     gap: 1rem;
     background-color: rgb(209, 213, 219);
-    padding: 1rem;
     border-radius: 0.25rem;
+    height: 3rem;
+    padding: 0, 1vw;
   }
   
   .lb-points-input {
     background: transparent;
     border: none;
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: bold;
-    width: 4rem;
+    width: 10rem;
+    margin-left: 1vw;
     padding: 0.25rem;
   }
   
@@ -207,4 +211,110 @@
   
   .lb-mark-complete:hover {
     background-color: rgb(96, 165, 250);
+  }
+
+.taskboard-footer {
+    grid-row: 11/11;
+    grid-column: 6/11;
+    background-color: var(--DARK-BLUE);
+    font-size: 1.9rem;
+    margin: 0 2vw;
+    font-weight: 700;
+    color: var(--WHITE);
+    padding: 1vh 0;
+    border: none;
+
+}
+
+.taskboard-footer:hover {
+    cursor:pointer;
+}
+
+
+.taskboard-new-task-container {
+    grid-row: 1/12;
+    grid-column: 1/11;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-form {
+    background-color: rgb(229, 231, 235);
+    padding: 2rem;
+    width:30vw;
+    max-width: 100%;
+    position: relative;
+  }
+  
+  .task-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+  
+  .task-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .close-button {
+    background-color: rgb(209, 213, 219);
+    border: none;
+    padding: 0.5rem 1rem;
+    font-weight: bold;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  
+  .new-task-form-group {
+    margin: 0 2vw;
+    margin-bottom: 1.5rem;
+    
+  }
+  
+  .form-label {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border: none;
+    background-color: rgb(209, 213, 219);
+  }
+  
+  .form-input:focus {
+    outline: none;
+    background-color: rgb(199, 203, 209);
+  }
+  
+  .description-input {
+    min-height: 8rem;
+    resize: vertical;
+  }
+  
+  .submit-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: rgb(37, 79, 157);
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .submit-button:hover {
+    background-color: rgb(30, 64, 127);
   }
