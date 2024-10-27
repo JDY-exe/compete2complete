@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 
-const AddGroupModal = ({ isOpen, onClose, onConfirm }) => {
+const AddGroupModal = ({ isOpen, onClose }) => {
   const [groupName, setGroupName] = useState("");
+
+  const handleAddGroup = (groupName) => {
+    // Add your logic to add the new group
+    const newGroup = { name: groupName, assignments: 0 };
+    setGroupName(newGroup);
+    // Update your groups state here
+    onClose()
+  };
 
   const handleSubmit = () => {
     if (groupName.trim()) {
-      onConfirm(groupName);
+      handleAddGroup(groupName);
       setGroupName("");
       onClose();
     }

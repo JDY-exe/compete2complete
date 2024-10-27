@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./Groups.css";
 import AddGroupModal from "./AddGroupModal";
-import React, { useState } from "react";
+import groupService from '../services/groupService'
+
 const Box = ({ name, assignments }) => {
   return (
     <div className="group">
@@ -12,28 +13,32 @@ const Box = ({ name, assignments }) => {
   );
 };
 
-const groups = [
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-  { name: "CS 250 HW :C", assignments: 14 },
-];
+// const groups = [
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+//   { name: "CS 250 HW :C", assignments: 14 },
+// ];
 function Groups() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [groups, setGroups] = useState([])
 
-  const handleAddGroup = (groupName) => {
-    // Add your logic to add the new group
-    const newGroup = { name: groupName, assignments: 0 };
-    setGroups([newGroup]);
-    // Update your groups state here
-    setIsModalOpen(false);
-  };
+  useEffect(() => {
+    groupService.getGroups()
+      .then((response) => {
+        const groups = response
+        setGroups(groups)
+      })
+      .catch((error) => {
+        console.error('there was an error retrieving groups', error)
+      })
+  }, [])
 
   return (
     <div className="groups-container">
@@ -45,13 +50,8 @@ function Groups() {
         </div>
       </div>
       <div className="groups-list">
-        {groups.map((group, index) => (
-          <div key={index} className="group">
-            <span className="group-name">{group.name}</span>
-            <span className="assignments-count">
-              {group.assignments} assignments
-            </span>
-          </div>
+        {groups.map((group) => (
+          <Box key={group.id} name={group.name} assignments={0} />
         ))}
       </div>
 
@@ -62,7 +62,6 @@ function Groups() {
       <AddGroupModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onConfirm={() => handleAddGroup(groupName)}
       />
     </div>
   );
