@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 const Login = ({user, setUser}) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
+    const [toggleSignUp, setToggleSignUp] = useState(false)
 
     const navigate = useNavigate()
 
@@ -12,16 +14,13 @@ const Login = ({user, setUser}) => {
         event.preventDefault()
         try {
             const user = await loginService.login(username, password)
-            if (!user) {
-                console.error('incorrect credentials', error)
-            } else {
-                setUser(user)
-                setUsername('')
-                setPassword('')
-                navigate('/')
-            }
+            setUser(user)
+            setUsername('')
+            setPassword('')
+            navigate('/')
         } catch(error) {
             console.error('an error occured while trying to login', error)
+            setError('wrong username or password')
         }
     }
 
@@ -36,17 +35,32 @@ const Login = ({user, setUser}) => {
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="username">Username</label>
-                    <input type="text" id="username" name="username" value={username} required onChange={event => setUsername(event.target.value)}></input>
+                    <input type="text" id="username" name="username" value={username} required 
+                    onChange={event => {setUsername(event.target.value); setError(null)}}></input>
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" id="password" name="password" value={password} required onChange={event => setPassword(event.target.value)}></input>
+                    <input type="password" id="password" name="password" value={password} required 
+                    onChange={event => {setPassword(event.target.value); setError(null)}}></input>
                 </div>
+                <ErrorMessage error={error}/>
                 <button type="submit" className="submit-btn">Go!</button>
             </form>
         </div>
     )
 
+}
+
+const ErrorMessage = ({error}) => {
+    if (!error) {
+        return
+    }
+    console.log('whats happening')
+    return (
+        <div className="login-error">
+            {error}
+        </div>
+    )
 }
 
 export default Login

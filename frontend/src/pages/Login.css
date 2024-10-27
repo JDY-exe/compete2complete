@@ -15,19 +15,12 @@
 }
 
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(145deg, #f0e6e6, #e6f0e6);
-}
-
 .login-container {
     background: white;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 30vw;
+    padding-top: 0.5rem;
 }
 
 .header {
@@ -99,6 +92,11 @@ input:focus {
 
 .submit-btn:hover {
     background-color: #7aa3d2;
+}
+
+.login-error {
+    color: red;
+    font-size: 1rem;
 }
 
 @media (max-width: 480px) {

@@ -28,15 +28,6 @@
 }
 
 
-body {
-    display: flex;
-    min-height: 100vh;
-    width: 100vw;
-    background: var(--WIHTE);
-    justify-content:space-between;
-}
-
-
 .lb-header {
     color: var(--BLACK);
     margin: 0;
