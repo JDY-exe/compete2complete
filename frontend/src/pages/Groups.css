@@ -18,11 +18,6 @@
     border-bottom: 2px solid blue; /* Make the blue line full-width */
   }
   
-  .title {
-    margin: 0;
-    padding-left: 20px; /* Move header text more to the left */
-  }
-  
   .user-info {
     display: flex;
     align-items: center;
